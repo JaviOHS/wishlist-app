@@ -4,7 +4,7 @@ const { app, PORT } = require('./app');
 // URI de conexión a MongoDB en Docker
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://mongo:27017/wishlist';
 
-//Función principal asíncrona para inicializar el servidor y conectar a la BD
+// Función principal asíncrona para inicializar el servidor y conectar a la BD
 async function main() {
   try {
     // Conectar Mongoose a MongoDB
