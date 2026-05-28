@@ -1,0 +1,25 @@
+{
+  "name": "wishlist-app",
+  "version": "1.0.0",
+  "description": "Este es un proyecto educativo diseñado para aprender el desarrollo web utilizando Express como un servidor monolítico (renderizado del lado del servidor con EJS), persistencia de datos con Mongoose y contenedorización con Docker.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaviOHS/wishlist-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaviOHS/wishlist-app/issues"
+  },
+  "homepage": "https://github.com/JaviOHS/wishlist-app#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3"
+  }
+}
