@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # Servicio de la aplicación Node.js
+  app:
+    build: .
+    container_name: wishlist-app
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/wishlist
+      - PORT=3000
+    depends_on:
+      - mongo
+    networks:
+      - wishlist-network
+    restart: unless-stopped
+
+  # Servicio de MongoDB
+  mongo:
+    image: mongo:6.0
+    container_name: wishlist-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=wishlist
+    networks:
+      - wishlist-network
+    restart: unless-stopped
+
+# Volumen persistente para MongoDB
+volumes:
+  mongo-data:
+
+# Red personalizada para los servicios
+networks:
+  wishlist-network:
+    driver: bridge
