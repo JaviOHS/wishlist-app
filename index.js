@@ -8,10 +8,7 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://mongo:27017/wishlist';
 async function main() {
   try {
     // Conectar Mongoose a MongoDB
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(MONGODB_URI);
     console.log('✅ Conectado a MongoDB exitosamente');
 
     // Iniciar el servidor Express

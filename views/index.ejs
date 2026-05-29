@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist App</title>
+</head>
+<body>
+
+    <h1>Lista de Deseos</h1>
+
+    <% if (deseos.length === 0) { %>
+        <p>No hay deseos registrados.</p>
+    <% } else { %>
+
+        <ul>
+            <% deseos.forEach(deseo => { %>
+                <li>
+                    <h3><%= deseo.nombre %></h3>
+
+                    <p>Precio: $<%= deseo.precio %></p>
+
+                    <p><%= deseo.descripcion %></p>
+
+                    <p>
+                        Estado:
+                        <%= deseo.completado ? 'Completado' : 'Pendiente' %>
+                    </p>
+
+                    <p>
+                        Fecha:
+                        <%= deseo.fechaCreada.toLocaleDateString() %>
+                    </p>
+
+                    <form action="/eliminar/<%= deseo._id %>" method="POST">
+
+                        <button type="submit">
+                            Eliminar
+                        </button>
+
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+
+    <% } %>
+
+    <h2>Agregar deseo</h2>
+
+    <form action="/agregar" method="POST">
+
+        <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre del deseo"
+            required
+        >
+
+        <input
+            type="number"
+            name="precio"
+            placeholder="Precio"
+            required
+        >
+
+        <textarea
+            name="descripcion"
+            placeholder="Descripción"
+        ></textarea>
+
+        <button type="submit">
+            Agregar
+        </button>
+
+    </form>
+
+</body>
+</html>

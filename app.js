@@ -3,6 +3,9 @@ const path = require('path');
 
 const app = express();
 
+// Importar rutas
+const indexRoutes = require('./routes/index');
+
 // Configurar el puerto
 const PORT = process.env.PORT || 3000;
 
@@ -16,6 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Middleware para parsear JSON y datos de formularios
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Usar rutas importadas
+app.use('/', indexRoutes);
 
 // Exportar la aplicación y el puerto para uso en index.js
 module.exports = { app, PORT };
