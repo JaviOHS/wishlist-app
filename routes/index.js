@@ -37,6 +37,28 @@ router.post('/agregar', async (req, res) => {
     }
 });
 
+// Ruta POST para actualizar un deseo existente
+router.post('/editar/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { nombre, precio, descripcion, prioridad } = req.body;
+
+        const deseo = await Deseo.findById(id);
+        if (!deseo) return res.status(404).send('Deseo no encontrado');
+
+        deseo.nombre = nombre;
+        deseo.precio = precio;
+        deseo.descripcion = descripcion;
+        deseo.prioridad = prioridad;
+
+        await deseo.save();
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al actualizar el deseo');
+    }
+});
+
 router.post('/eliminar/:id', async (req, res) => {
     try {
         const { id } = req.params;
