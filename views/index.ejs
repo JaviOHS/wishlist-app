@@ -135,15 +135,24 @@
                     </button>
                   </form>
 
-                  <button type="button"
-                    class="edit-trigger text-slate-300 hover:text-blue-600 border border-transparent hover:border-blue-200 hover:bg-blue-50 rounded-lg p-1.5 transition"
-                    data-action="/editar/<%= deseo._id %>"
-                    data-nombre="<%= deseo.nombre %>"
-                    data-precio="<%= deseo.precio %>"
-                    data-prioridad="<%= deseo.prioridad || 'Media' %>"
-                    data-descripcion="<%= deseo.descripcion || '' %>">
-                    <i class="ti ti-pencil text-sm"></i>
-                  </button>
+                  <% if (!deseo.completado) { %>
+                    <button type="button"
+                      class="edit-trigger text-slate-300 hover:text-blue-600 border border-transparent hover:border-blue-200 hover:bg-blue-50 rounded-lg p-1.5 transition"
+                      data-action="/editar/<%= deseo._id %>"
+                      data-nombre="<%= deseo.nombre %>"
+                      data-precio="<%= deseo.precio %>"
+                      data-prioridad="<%= deseo.prioridad || 'Media' %>"
+                      data-descripcion="<%= deseo.descripcion || '' %>"
+                      title="Editar deseo pendiente">
+                      <i class="ti ti-pencil text-sm"></i>
+                    </button>
+                  <% } else { %>
+                    <button type="button" disabled
+                      class="text-slate-200 border border-transparent rounded-lg p-1.5 cursor-not-allowed"
+                      title="No se puede editar un deseo completado">
+                      <i class="ti ti-pencil-off text-sm"></i>
+                    </button>
+                  <% } %>
 
                   <form action="/eliminar/<%= deseo._id %>" method="POST" class="delete-form">
                     <button type="button"

@@ -45,6 +45,7 @@ router.post('/editar/:id', async (req, res) => {
 
         const deseo = await Deseo.findById(id);
         if (!deseo) return res.status(404).send('Deseo no encontrado');
+        if (deseo.completado) return res.status(403).send('No se puede editar un deseo completado');
 
         deseo.nombre = nombre;
         deseo.precio = precio;
