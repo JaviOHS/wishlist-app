@@ -17,12 +17,13 @@ router.get('/', async (req, res) => {
 router.post('/agregar', async (req, res) => {
     try {
 
-        const { nombre, precio, descripcion } = req.body;
+        const { nombre, precio, descripcion, prioridad } = req.body;
 
         const nuevoDeseo = new Deseo({
             nombre,
             precio,
             descripcion,
+            prioridad,
         });
 
         await nuevoDeseo.save();

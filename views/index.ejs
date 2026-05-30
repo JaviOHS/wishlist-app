@@ -1,77 +1,148 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Wishlist App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lista de Deseos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    [x-cloak] { display: none; }
+    body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
 
-    <h1>Lista de Deseos</h1>
+  <div class="flex flex-col lg:flex-row min-h-screen">
 
-    <% if (deseos.length === 0) { %>
-        <p>No hay deseos registrados.</p>
-    <% } else { %>
+    <!-- SIDEBAR: Formulario -->
+    <aside class="lg:w-[380px] lg:min-h-screen bg-white border-b lg:border-b-0 lg:border-r border-slate-100 p-8 flex flex-col gap-8 flex-shrink-0">
 
-        <ul>
-            <% deseos.forEach(deseo => { %>
-                <li>
-                    <h3><%= deseo.nombre %></h3>
+      <!-- Marca -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700">
+          <i class="ti ti-heart text-lg"></i>
+        </div>
+        <div>
+          <h1 class="text-[17px] font-medium leading-tight">Lista de Deseos</h1>
+          <p class="text-[12px] text-slate-400 mt-0.5">Tus metas, organizadas</p>
+        </div>
+      </div>
 
-                    <p>Precio: $<%= deseo.precio %></p>
+      <!-- Formulario -->
+      <form action="/agregar" method="POST" class="flex flex-col gap-5">
+        <span class="text-[11px] font-medium uppercase tracking-widest text-slate-400">Nuevo deseo</span>
 
-                    <p><%= deseo.descripcion %></p>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[13px] text-slate-500" for="nombre">Nombre</label>
+          <input id="nombre" type="text" name="nombre" placeholder="¿Qué deseas?" required
+            class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+        </div>
 
-                    <p>
-                        Estado:
-                        <%= deseo.completado ? 'Completado' : 'Pendiente' %>
-                    </p>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-[13px] text-slate-500" for="precio">Precio</label>
+            <input id="precio" type="number" name="precio" placeholder="0.00" step="0.01" required
+              class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-[13px] text-slate-500" for="prioridad">Prioridad</label>
+            <input id="prioridad" type="text" name="prioridad" placeholder="Alta, Media, Baja"
+              class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+          </div>
+        </div>
 
-                    <p>
-                        Fecha:
-                        <%= deseo.fechaCreada.toLocaleDateString() %>
-                    </p>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[13px] text-slate-500" for="descripcion">
+            Descripción <span class="text-[11px] opacity-50">(opcional)</span>
+          </label>
+          <textarea id="descripcion" name="descripcion" rows="4"
+            placeholder="Agrega detalles, enlaces, notas…"
+            class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 resize-none focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition"></textarea>
+        </div>
 
-                    <form action="/eliminar/<%= deseo._id %>" method="POST">
+        <div class="flex flex-col gap-2 mt-1">
+          <button type="submit"
+            class="flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white text-sm font-medium py-2.5 rounded-lg transition">
+            <i class="ti ti-plus"></i> Agregar deseo
+          </button>
+          <button type="reset"
+            class="text-sm text-slate-500 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 transition">
+            Limpiar campos
+          </button>
+        </div>
+      </form>
 
-                        <button type="submit">
-                            Eliminar
-                        </button>
+      <div class="mt-auto pt-6 border-t border-slate-100">
+        <p class="text-[11px] text-slate-400 leading-relaxed">
+          <i class="ti ti-info-circle align-middle mr-1"></i>
+          Los deseos completados se marcan automáticamente al confirmarlos.
+        </p>
+      </div>
+    </aside>
 
-                    </form>
-                </li>
-            <% }) %>
-        </ul>
+    <!-- MAIN: Lista de deseos -->
+    <main class="flex-1 p-8 overflow-y-auto flex flex-col gap-5">
 
-    <% } %>
+      <!-- Encabezado -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+        <h2 class="text-[15px] font-medium">Mis deseos</h2>
+        <div class="flex gap-2">
+          <span class="text-[12px] px-3 py-1 rounded-full bg-blue-50 text-blue-700">
+            <i class="ti ti-list align-middle mr-1"></i><%= deseos.length %> total
+          </span>
+          <span class="text-[12px] px-3 py-1 rounded-full bg-green-50 text-green-700">
+            <i class="ti ti-check align-middle mr-1"></i><%= deseos.filter(d => d.completado).length %> completados
+          </span>
+        </div>
+      </div>
 
-    <h2>Agregar deseo</h2>
+      <!-- Cards -->
+      <% if (!deseos || deseos.length === 0) { %>
+        <div class="flex flex-col items-center justify-center gap-3 py-24 text-slate-300 text-center">
+          <i class="ti ti-heart-off text-5xl"></i>
+          <p class="text-sm">Aún no tienes deseos. ¡Agrega el primero!</p>
+        </div>
+      <% } else { %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+          <% deseos.forEach(deseo => { %>
+            <article class="bg-white border border-slate-100 rounded-xl p-5 flex flex-col gap-3 hover:border-slate-200 transition">
+              <div class="flex items-start justify-between gap-2">
+                <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 flex-shrink-0">
+                  <i class="ti ti-star text-lg"></i>
+                </div>
+                <span class="text-[11px] font-medium px-2.5 py-1 rounded-full <%= deseo.completado ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700' %>">
+                  <%= deseo.completado ? 'Completado' : 'Pendiente' %>
+                </span>
+              </div>
+              <p class="text-sm font-medium leading-snug"><%= deseo.nombre %></p>
+              <% if (deseo.descripcion) { %>
+                <p class="text-xs text-slate-400 leading-relaxed"><%= deseo.descripcion %></p>
+              <% } %>
+              <div class="flex items-center justify-between pt-2 border-t border-slate-100 mt-auto">
+                <span class="text-[15px] font-medium">$<%= (Number(deseo.precio) || 0).toFixed(2) %></span>
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] px-2 py-1 rounded-full bg-slate-100 text-slate-700">
+                    <%= deseo.prioridad || 'Media' %>
+                  </span>
+                  <span class="text-[11px] text-slate-300">
+                    <%= deseo.fechaCreada ? new Date(deseo.fechaCreada).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) : '' %>
+                  </span>
+                  <form action="/eliminar/<%= deseo._id %>" method="POST" onsubmit="return confirm('¿Eliminar este deseo?')">
+                    <button type="submit"
+                      class="text-slate-300 hover:text-red-500 border border-transparent hover:border-red-200 hover:bg-red-50 rounded-lg p-1.5 transition">
+                      <i class="ti ti-trash text-sm"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      <% } %>
 
-    <form action="/agregar" method="POST">
-
-        <input
-            type="text"
-            name="nombre"
-            placeholder="Nombre del deseo"
-            required
-        >
-
-        <input
-            type="number"
-            name="precio"
-            placeholder="Precio"
-            required
-        >
-
-        <textarea
-            name="descripcion"
-            placeholder="Descripción"
-        ></textarea>
-
-        <button type="submit">
-            Agregar
-        </button>
-
-    </form>
+    </main>
+  </div>
 
 </body>
 </html>

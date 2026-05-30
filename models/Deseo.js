@@ -22,6 +22,12 @@ const deseoSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+  prioridad: {
+    type: String,
+    trim: true,
+    maxlength: 20,
+    default: 'Media',
+  },
   completado: {
     type: Boolean,
     default: false,

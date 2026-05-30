@@ -1,0 +1,76 @@
+# Comandos para levantar Wishlist App
+
+# 1) Clonar el repositorio
+git clone https://github.com/JaviOHS/wishlist-app.git
+cd wishlist-app
+
+# 2) Opción A — Levantar con Docker (recomendado)
+# A.1 Levantar y ver logs en la consola
+docker compose up --build
+
+# A.2 Levantar en segundo plano (detached) y luego ver logs
+docker compose up --build -d
+docker compose logs -f
+
+# Abrir la app en el navegador
+# http://localhost:3000
+
+# 3) Opción B — Ejecutar localmente (sin Docker)
+# Requisitos: Node.js instalado y MongoDB accesible (local o en contenedor).
+
+# Instalar dependencias
+npm install
+
+# (Opcional) Ejecutar Mongo en contenedor si no tienes Mongo local
+docker run -d --name wishlist-mongo -p 27017:27017 -v mongo-data:/data/db -e MONGO_INITDB_DATABASE=wishlist mongo:6.0
+
+# Iniciar la aplicación
+node index.js
+
+# (Opcional) Añadir script start al package.json y usar npm start
+npm pkg set scripts.start "node index.js"
+npm start
+
+# 4) Comandos útiles de diagnóstico y limpieza
+# Listar todos los contenedores
+docker ps -a
+
+# Listar contenedores en ejecución
+docker ps
+
+# Ver logs de la app o de mongo
+docker logs wishlist-app --follow
+docker logs wishlist-mongo --follow
+
+# Acceder a la shell de Mongo dentro del contenedor
+docker exec -it wishlist-mongo mongosh
+
+# Parar y eliminar contenedores creados por Compose (mantiene volúmenes)
+docker compose down
+
+# Parar y eliminar contenedores + volúmenes (borra datos de Mongo)
+docker compose down -v
+
+# Forzar reconstrucción y reinicio
+docker compose up --build -d
+docker compose logs -f
+
+# Eliminar un contenedor concreto (por ejemplo si hay duplicados)
+docker stop <container-id-or-name>
+docker rm <container-id-or-name>
+
+# 5) Problemas frecuentes y comandos rápidos
+# Si el contenedor de la app no encuentra 'mongo' (getaddrinfo ENOTFOUND mongo):
+# Asegúrate que el contenedor de Mongo esté `Up` antes de la app
+# Si hay contenedores en estado Created, arráncalos manualmente:
+docker start wishlist-mongo
+docker start wishlist-app
+
+# Si docker compose devuelve "context canceled" o la ejecución se interrumpe:
+# Levanta en detached y revisa logs
+docker compose up --build -d
+docker compose logs -f
+
+# Si el puerto 3000 está en uso, cambia el mapeo en docker-compose.yml o libera el puerto.
+
+# Fin del archivo - Ejecuta los comandos según la opción que prefieras.
