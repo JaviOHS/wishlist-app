@@ -115,7 +115,7 @@
                   <%= deseo.completado ? 'Completado' : 'Pendiente' %>
                 </span>
               </div>
-              <p class="text-sm font-medium leading-snug"><%= deseo.nombre %></p>
+              <p class="text-sm font-medium leading-snug <%= deseo.completado ? 'line-through text-slate-400' : '' %>"><%= deseo.nombre %></p>
               <% if (deseo.descripcion) { %>
                 <p class="text-xs text-slate-400 leading-relaxed"><%= deseo.descripcion %></p>
               <% } %>
@@ -128,6 +128,13 @@
                   <span class="text-[11px] text-slate-300">
                     <%= deseo.fechaCreada ? new Date(deseo.fechaCreada).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) : '' %>
                   </span>
+                  <form action="/completar/<%= deseo._id %>" method="POST" title="<%= deseo.completado ? 'Marcar como pendiente' : 'Marcar como completado' %>">
+                    <button type="submit"
+                      class="text-slate-300 hover:text-green-500 border border-transparent hover:bg-green-50 rounded-lg p-1.5 transition">
+                      <i class="ti ti-check text-sm"></i>
+                    </button>
+                  </form>
+
                   <form action="/eliminar/<%= deseo._id %>" method="POST" onsubmit="return confirm('¿Eliminar este deseo?')">
                     <button type="submit"
                       class="text-slate-300 hover:text-red-500 border border-transparent hover:border-red-200 hover:bg-red-50 rounded-lg p-1.5 transition">

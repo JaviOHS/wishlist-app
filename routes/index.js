@@ -5,7 +5,8 @@ const Deseo = require('../models/Deseo');
 // Ruta GET principal
 router.get('/', async (req, res) => {
     try {
-        const deseos = await Deseo.find();
+        // Ordena por completado (pendientes primero) y luego por fecha de creación
+        const deseos = await Deseo.find().sort({ completado: 1, fechaCreada: 1 });
 
         res.render('index', { deseos });
     } catch (error) {
@@ -47,6 +48,24 @@ router.post('/eliminar/:id', async (req, res) => {
         console.error(error);
 
         res.status(500).send('Error al eliminar el deseo');
+    }
+});
+
+// Ruta POST para alternar el estado completado/pendiente
+router.post('/completar/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deseo = await Deseo.findById(id);
+        if (!deseo) return res.status(404).send('Deseo no encontrado');
+
+        deseo.completado = !deseo.completado;
+        await deseo.save();
+
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al actualizar el estado');
     }
 });
 
