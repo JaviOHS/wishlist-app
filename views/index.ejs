@@ -97,11 +97,66 @@
         </div>
       </div>
 
+      <form action="/" method="GET" class="bg-white border border-slate-100 rounded-xl p-4 grid grid-cols-1 md:grid-cols-12 gap-3">
+        <div class="md:col-span-4">
+          <label for="q" class="text-[12px] text-slate-500">Buscar</label>
+          <input id="q" type="text" name="q" value="<%= filtros?.q || '' %>" placeholder="Nombre o descripción"
+            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="estado" class="text-[12px] text-slate-500">Estado</label>
+          <select id="estado" name="estado"
+            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+            <option value="todos" <%= (filtros?.estado || 'todos') === 'todos' ? 'selected' : '' %>>Todos</option>
+            <option value="pendiente" <%= filtros?.estado === 'pendiente' ? 'selected' : '' %>>Pendiente</option>
+            <option value="completado" <%= filtros?.estado === 'completado' ? 'selected' : '' %>>Completado</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="prioridad-filtro" class="text-[12px] text-slate-500">Prioridad</label>
+          <select id="prioridad-filtro" name="prioridad"
+            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+            <option value="todas" <%= (filtros?.prioridad || 'todas') === 'todas' ? 'selected' : '' %>>Todas</option>
+            <option value="Alta" <%= filtros?.prioridad === 'Alta' ? 'selected' : '' %>>Alta</option>
+            <option value="Media" <%= filtros?.prioridad === 'Media' ? 'selected' : '' %>>Media</option>
+            <option value="Baja" <%= filtros?.prioridad === 'Baja' ? 'selected' : '' %>>Baja</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="orden" class="text-[12px] text-slate-500">Ordenar por</label>
+          <select id="orden" name="orden"
+            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+            <option value="fecha_desc" <%= (filtros?.orden || 'fecha_desc') === 'fecha_desc' ? 'selected' : '' %>>Fecha (nuevo a viejo)</option>
+            <option value="fecha_asc" <%= filtros?.orden === 'fecha_asc' ? 'selected' : '' %>>Fecha (viejo a nuevo)</option>
+            <option value="precio_asc" <%= filtros?.orden === 'precio_asc' ? 'selected' : '' %>>Precio (menor a mayor)</option>
+            <option value="precio_desc" <%= filtros?.orden === 'precio_desc' ? 'selected' : '' %>>Precio (mayor a menor)</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2 flex items-end gap-2">
+          <button type="submit"
+            class="w-full text-sm px-3 py-2.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white transition">
+            Aplicar
+          </button>
+          <a href="/"
+            class="w-full text-sm px-3 py-2.5 rounded-lg border border-slate-200 text-slate-600 text-center hover:bg-slate-50 transition">
+            Limpiar
+          </a>
+        </div>
+      </form>
+
       <!-- Cards -->
       <% if (!deseos || deseos.length === 0) { %>
         <div class="flex flex-col items-center justify-center gap-3 py-24 text-slate-300 text-center">
           <i class="ti ti-heart-off text-5xl"></i>
-          <p class="text-sm">Aún no tienes deseos. ¡Agrega el primero!</p>
+          <% if ((filtros?.q || '').length || (filtros?.estado && filtros.estado !== 'todos') || (filtros?.prioridad && filtros.prioridad !== 'todas')) { %>
+            <p class="text-sm">No hay resultados para los filtros aplicados.</p>
+          <% } else { %>
+            <p class="text-sm">Aún no tienes deseos. ¡Agrega el primero!</p>
+          <% } %>
         </div>
       <% } else { %>
         <ul class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">

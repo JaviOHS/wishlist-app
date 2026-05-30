@@ -5,10 +5,40 @@ const Deseo = require('../models/Deseo');
 // Ruta GET principal
 router.get('/', async (req, res) => {
     try {
-        // Ordena por completado (pendientes primero) y luego por fecha de creación
-        const deseos = await Deseo.find().sort({ completado: 1, fechaCreada: 1 });
+        const q = (req.query.q || '').trim();
+        const estado = req.query.estado || 'todos';
+        const prioridad = req.query.prioridad || 'todas';
+        const orden = req.query.orden || 'fecha_desc';
 
-        res.render('index', { deseos });
+        const filtros = {};
+
+        if (q) {
+            filtros.$or = [
+                { nombre: { $regex: q, $options: 'i' } },
+                { descripcion: { $regex: q, $options: 'i' } },
+            ];
+        }
+
+        if (estado === 'pendiente') filtros.completado = false;
+        if (estado === 'completado') filtros.completado = true;
+
+        if (prioridad !== 'todas') {
+            filtros.prioridad = { $regex: `^${prioridad}$`, $options: 'i' };
+        }
+
+        const sortMap = {
+            fecha_desc: { completado: 1, fechaCreada: -1 },
+            fecha_asc: { completado: 1, fechaCreada: 1 },
+            precio_asc: { completado: 1, precio: 1 },
+            precio_desc: { completado: 1, precio: -1 },
+        };
+
+        const sort = sortMap[orden] || sortMap.fecha_desc;
+        const deseos = await Deseo.find(filtros).sort(sort);
+
+        const filtrosUI = { q, estado, prioridad, orden };
+
+        res.render('index', { deseos, filtros: filtrosUI });
     } catch (error) {
         res.status(500).send(error.message);
     }
