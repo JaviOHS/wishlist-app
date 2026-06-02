@@ -11,12 +11,12 @@
     body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen">
+<body class="bg-slate-50 text-slate-950 min-h-screen">
 
   <div class="flex flex-col lg:flex-row min-h-screen">
 
     <!-- SIDEBAR: Formulario -->
-    <aside class="lg:w-[380px] lg:min-h-screen bg-white border-b lg:border-b-0 lg:border-r border-slate-100 p-8 flex flex-col gap-8 flex-shrink-0">
+    <aside class="lg:w-[380px] lg:min-h-screen bg-white border-b lg:border-b-0 lg:border-r border-slate-200 p-8 flex flex-col gap-8 flex-shrink-0">
 
       <!-- Marca -->
       <div class="flex items-center gap-3">
@@ -25,56 +25,56 @@
         </div>
         <div>
           <h1 class="text-[17px] font-medium leading-tight">Lista de Deseos</h1>
-          <p class="text-[12px] text-slate-400 mt-0.5">Tus metas, organizadas</p>
+          <p class="text-[12px] text-slate-600 mt-0.5">Tus metas, organizadas</p>
         </div>
       </div>
 
       <!-- Formulario -->
       <form action="/agregar" method="POST" class="flex flex-col gap-5">
-        <span class="text-[11px] font-medium uppercase tracking-widest text-slate-400">Nuevo deseo</span>
+        <span class="text-[11px] font-medium uppercase tracking-widest text-slate-700">Nuevo deseo</span>
 
         <div class="flex flex-col gap-1.5">
-          <label class="text-[13px] text-slate-500" for="nombre">Nombre</label>
+          <label class="text-[13px] font-medium text-slate-700" for="nombre">Nombre</label>
           <input id="nombre" type="text" name="nombre" placeholder="¿Qué deseas?" required
-            class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+            class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div class="flex flex-col gap-1.5">
-            <label class="text-[13px] text-slate-500" for="precio">Precio</label>
+            <label class="text-[13px] font-medium text-slate-700" for="precio">Precio</label>
             <input id="precio" type="number" name="precio" placeholder="0.00" step="0.01" required
-              class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+              class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
           </div>
           <div class="flex flex-col gap-1.5">
-            <label class="text-[13px] text-slate-500" for="prioridad">Prioridad</label>
+            <label class="text-[13px] font-medium text-slate-700" for="prioridad">Prioridad</label>
             <input id="prioridad" type="text" name="prioridad" placeholder="Alta, Media, Baja"
-              class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+              class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
           </div>
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label class="text-[13px] text-slate-500" for="descripcion">
+          <label class="text-[13px] font-medium text-slate-700" for="descripcion">
             Descripción <span class="text-[11px] opacity-50">(opcional)</span>
           </label>
           <textarea id="descripcion" name="descripcion" rows="4"
             placeholder="Agrega detalles, enlaces, notas…"
-            class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 resize-none focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition"></textarea>
+            class="text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-900 placeholder:text-slate-500 resize-none focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"></textarea>
         </div>
 
         <div class="flex flex-col gap-2 mt-1">
           <button type="submit"
-            class="flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white text-sm font-medium py-2.5 rounded-lg transition">
+            class="flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold py-2.5 rounded-lg transition">
             <i class="ti ti-plus"></i> Agregar deseo
           </button>
           <button type="reset"
-            class="text-sm text-slate-500 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 transition">
+            class="text-sm text-slate-700 py-2.5 border border-slate-300 rounded-lg hover:bg-slate-100 transition font-medium">
             Limpiar campos
           </button>
         </div>
       </form>
 
       <div class="mt-auto pt-6 border-t border-slate-100">
-        <p class="text-[11px] text-slate-400 leading-relaxed">
+          <p class="text-[11px] text-slate-700 leading-relaxed">
           <i class="ti ti-info-circle align-middle mr-1"></i>
           Los deseos completados se marcan automáticamente al confirmarlos.
         </p>
@@ -86,28 +86,28 @@
 
       <!-- Encabezado -->
       <div class="flex items-center justify-between pb-4 border-b border-slate-100">
-        <h2 class="text-[15px] font-medium">Mis deseos</h2>
+        <h2 class="text-[15px] font-semibold text-slate-950">Mis deseos</h2>
         <div class="flex gap-2">
-          <span class="text-[12px] px-3 py-1 rounded-full bg-blue-50 text-blue-700">
+          <span class="text-[12px] px-3 py-1 rounded-full bg-blue-100 text-blue-900 font-medium">
             <i class="ti ti-list align-middle mr-1"></i><%= deseos.length %> total
           </span>
-          <span class="text-[12px] px-3 py-1 rounded-full bg-green-50 text-green-700">
+          <span class="text-[12px] px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-medium">
             <i class="ti ti-check align-middle mr-1"></i><%= deseos.filter(d => d.completado).length %> completados
           </span>
         </div>
       </div>
 
-      <form action="/" method="GET" class="bg-white border border-slate-100 rounded-xl p-4 grid grid-cols-1 md:grid-cols-12 gap-3">
+      <form action="/" method="GET" class="bg-white border border-slate-200 rounded-xl p-4 grid grid-cols-1 md:grid-cols-12 gap-3">
         <div class="md:col-span-4">
-          <label for="q" class="text-[12px] text-slate-500">Buscar</label>
+          <label for="q" class="text-[12px] font-medium text-slate-700">Buscar</label>
           <input id="q" type="text" name="q" value="<%= filtros?.q || '' %>" placeholder="Nombre o descripción"
-            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
         </div>
 
         <div class="md:col-span-2">
-          <label for="estado" class="text-[12px] text-slate-500">Estado</label>
+          <label for="estado" class="text-[12px] font-medium text-slate-700">Estado</label>
           <select id="estado" name="estado"
-            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
             <option value="todos" <%= (filtros?.estado || 'todos') === 'todos' ? 'selected' : '' %>>Todos</option>
             <option value="pendiente" <%= filtros?.estado === 'pendiente' ? 'selected' : '' %>>Pendiente</option>
             <option value="completado" <%= filtros?.estado === 'completado' ? 'selected' : '' %>>Completado</option>
@@ -115,9 +115,9 @@
         </div>
 
         <div class="md:col-span-2">
-          <label for="prioridad-filtro" class="text-[12px] text-slate-500">Prioridad</label>
+          <label for="prioridad-filtro" class="text-[12px] font-medium text-slate-700">Prioridad</label>
           <select id="prioridad-filtro" name="prioridad"
-            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
             <option value="todas" <%= (filtros?.prioridad || 'todas') === 'todas' ? 'selected' : '' %>>Todas</option>
             <option value="Alta" <%= filtros?.prioridad === 'Alta' ? 'selected' : '' %>>Alta</option>
             <option value="Media" <%= filtros?.prioridad === 'Media' ? 'selected' : '' %>>Media</option>
@@ -126,9 +126,9 @@
         </div>
 
         <div class="md:col-span-2">
-          <label for="orden" class="text-[12px] text-slate-500">Ordenar por</label>
+          <label for="orden" class="text-[12px] font-medium text-slate-700">Ordenar por</label>
           <select id="orden" name="orden"
-            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition">
+            class="mt-1 w-full text-sm px-3 py-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
             <option value="fecha_desc" <%= (filtros?.orden || 'fecha_desc') === 'fecha_desc' ? 'selected' : '' %>>Fecha (nuevo a viejo)</option>
             <option value="fecha_asc" <%= filtros?.orden === 'fecha_asc' ? 'selected' : '' %>>Fecha (viejo a nuevo)</option>
             <option value="precio_asc" <%= filtros?.orden === 'precio_asc' ? 'selected' : '' %>>Precio (menor a mayor)</option>
@@ -138,11 +138,11 @@
 
         <div class="md:col-span-2 flex items-end gap-2">
           <button type="submit"
-            class="w-full text-sm px-3 py-2.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white transition">
+            class="w-full text-sm px-3 py-2.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-semibold transition">
             Aplicar
           </button>
           <a href="/"
-            class="w-full text-sm px-3 py-2.5 rounded-lg border border-slate-200 text-slate-600 text-center hover:bg-slate-50 transition">
+            class="w-full text-sm px-3 py-2.5 rounded-lg border border-slate-300 text-slate-800 text-center hover:bg-slate-100 font-medium transition">
             Limpiar
           </a>
         </div>
@@ -150,7 +150,7 @@
 
       <!-- Cards -->
       <% if (!deseos || deseos.length === 0) { %>
-        <div class="flex flex-col items-center justify-center gap-3 py-24 text-slate-300 text-center">
+        <div class="flex flex-col items-center justify-center gap-3 py-24 text-slate-500 text-center">
           <i class="ti ti-heart-off text-5xl"></i>
           <% if ((filtros?.q || '').length || (filtros?.estado && filtros.estado !== 'todos') || (filtros?.prioridad && filtros.prioridad !== 'todas')) { %>
             <p class="text-sm">No hay resultados para los filtros aplicados.</p>
@@ -161,64 +161,67 @@
       <% } else { %>
         <ul class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
           <% deseos.forEach(deseo => { %>
-            <li class="bg-white border border-slate-100 rounded-xl p-5 flex flex-col gap-3 hover:border-slate-200 transition">
+            <li class="bg-white border border-slate-200 rounded-xl p-5 flex flex-col gap-3 hover:border-slate-300 transition">
               <div class="flex items-start justify-between gap-2">
-                <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 flex-shrink-0">
+                <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-800 flex-shrink-0">
                   <i class="ti ti-star text-lg"></i>
                 </div>
-                <span class="text-[11px] font-medium px-2.5 py-1 rounded-full <%= deseo.completado ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700' %>">
+                <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full <%= deseo.completado ? 'bg-emerald-100 text-emerald-900' : 'bg-amber-100 text-amber-900' %>">
                   <%= deseo.completado ? 'Completado' : 'Pendiente' %>
                 </span>
               </div>
-              <p class="text-sm font-medium leading-snug <%= deseo.completado ? 'line-through text-slate-400' : '' %>"><%= deseo.nombre %></p>
+              <p class="text-sm font-semibold leading-snug <%= deseo.completado ? 'line-through text-slate-500' : 'text-slate-950' %>"><%= deseo.nombre %></p>
               <% if (deseo.descripcion) { %>
-                <p class="text-xs text-slate-400 leading-relaxed"><%= deseo.descripcion %></p>
+                <p class="text-xs text-slate-700 leading-relaxed"><%= deseo.descripcion %></p>
               <% } %>
               <div class="flex items-center justify-between pt-2 border-t border-slate-100 mt-auto">
-                <span class="text-[15px] font-medium">$<%= (Number(deseo.precio) || 0).toFixed(2) %></span>
+                <span class="text-[15px] font-semibold text-slate-950">$<%= (Number(deseo.precio) || 0).toFixed(2) %></span>
                 <div class="flex items-center gap-2">
-                  <span class="text-[11px] px-2 py-1 rounded-full bg-slate-100 text-slate-700">
+                  <span class="text-[11px] px-2.5 py-1 rounded-full font-semibold <%= (deseo.prioridad || 'Media') === 'Alta' ? 'bg-red-100 text-red-900 ring-1 ring-red-200' : (deseo.prioridad || 'Media') === 'Baja' ? 'bg-emerald-100 text-emerald-900 ring-1 ring-emerald-200' : 'bg-amber-100 text-amber-900 ring-1 ring-amber-200' %>">
                     <%= deseo.prioridad || 'Media' %>
                   </span>
-                  <span class="text-[11px] text-slate-300">
+                  <span class="text-[11px] text-slate-700">
                     <%= deseo.fechaCreada ? new Date(deseo.fechaCreada).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) : '' %>
                   </span>
                   <form action="/completar/<%= deseo._id %>" method="POST" title="<%= deseo.completado ? 'Marcar como pendiente' : 'Marcar como completado' %>">
                     <button type="submit"
-                      class="text-slate-300 hover:text-green-500 border border-transparent hover:bg-green-50 rounded-lg p-1.5 transition">
-                      <i class="ti ti-check text-sm"></i>
+                      class="w-11 h-11 inline-flex items-center justify-center text-green-600 bg-green-50 hover:text-green-700 hover:bg-green-100 border border-transparent rounded-lg transition"
+                      aria-label="<%= deseo.completado ? 'Marcar como pendiente' : 'Marcar como completado' %>">
+                      <i class="ti ti-check text-base"></i>
                     </button>
                   </form>
 
                   <% if (!deseo.completado) { %>
                     <button type="button"
-                      class="edit-trigger text-slate-300 hover:text-blue-600 border border-transparent hover:border-blue-200 hover:bg-blue-50 rounded-lg p-1.5 transition"
+                      class="edit-trigger w-11 h-11 inline-flex items-center justify-center text-blue-600 bg-blue-50 hover:text-blue-700 hover:bg-blue-100 border border-transparent rounded-lg transition"
                       data-action="/editar/<%= deseo._id %>"
                       data-nombre="<%= deseo.nombre %>"
                       data-precio="<%= deseo.precio %>"
                       data-prioridad="<%= deseo.prioridad || 'Media' %>"
                       data-descripcion="<%= deseo.descripcion || '' %>"
-                      title="Editar deseo pendiente">
-                      <i class="ti ti-pencil text-sm"></i>
+                      title="Editar deseo pendiente"
+                      aria-label="Editar deseo pendiente">
+                      <i class="ti ti-pencil text-base"></i>
                     </button>
                   <% } else { %>
                     <button type="button" disabled
-                      class="text-slate-200 border border-transparent rounded-lg p-1.5 cursor-not-allowed"
+                      class="w-11 h-11 inline-flex items-center justify-center text-slate-300 border border-transparent rounded-lg cursor-not-allowed bg-slate-50"
                       title="No se puede editar un deseo completado">
-                      <i class="ti ti-pencil-off text-sm"></i>
+                      <i class="ti ti-pencil-off text-base"></i>
                     </button>
                   <% } %>
 
                   <form action="/eliminar/<%= deseo._id %>" method="POST" class="delete-form">
                     <button type="button"
-                      class="delete-trigger text-slate-300 hover:text-red-500 border border-transparent hover:border-red-200 hover:bg-red-50 rounded-lg p-1.5 transition"
+                      class="delete-trigger w-11 h-11 inline-flex items-center justify-center text-red-600 bg-red-50 hover:text-red-700 hover:bg-red-100 border border-transparent rounded-lg transition"
                       data-action="/eliminar/<%= deseo._id %>"
                       data-nombre="<%= deseo.nombre %>"
                       data-precio="<%= (Number(deseo.precio) || 0).toFixed(2) %>"
                       data-prioridad="<%= deseo.prioridad || 'Media' %>"
                       data-descripcion="<%= deseo.descripcion || 'Sin descripción' %>"
-                      data-estado="<%= deseo.completado ? 'Completado' : 'Pendiente' %>">
-                      <i class="ti ti-trash text-sm"></i>
+                      data-estado="<%= deseo.completado ? 'Completado' : 'Pendiente' %>"
+                      aria-label="Eliminar deseo">
+                      <i class="ti ti-trash text-base"></i>
                     </button>
                   </form>
                 </div>
@@ -234,50 +237,50 @@
   <div id="delete-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/50 px-4">
     <div class="w-full max-w-md rounded-2xl bg-white shadow-2xl border border-slate-100 overflow-hidden">
       <div class="p-5 border-b border-slate-100 flex items-start gap-3">
-        <div class="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-full bg-red-100 text-red-700 flex items-center justify-center flex-shrink-0">
           <i class="ti ti-trash text-xl"></i>
         </div>
         <div class="min-w-0">
           <h3 class="text-base font-semibold text-slate-900">Eliminar deseo</h3>
-          <p class="text-sm text-slate-500 mt-1">Revisa la información antes de confirmar la baja.</p>
+          <p class="text-sm text-slate-700 mt-1">Revisa la información antes de confirmar la baja.</p>
         </div>
       </div>
 
       <div class="p-5 space-y-3 text-sm text-slate-600">
-        <div class="grid grid-cols-1 gap-3 rounded-xl bg-slate-50 p-4 border border-slate-100">
+        <div class="grid grid-cols-1 gap-3 rounded-xl bg-slate-50 p-4 border border-slate-200">
           <div>
-            <span class="block text-[11px] uppercase tracking-widest text-slate-400">Nombre</span>
-            <p id="delete-modal-nombre" class="mt-1 font-medium text-slate-900"></p>
+            <span class="block text-[11px] uppercase tracking-widest text-slate-700">Nombre</span>
+            <p id="delete-modal-nombre" class="mt-1 font-semibold text-slate-950"></p>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <span class="block text-[11px] uppercase tracking-widest text-slate-400">Precio</span>
-              <p id="delete-modal-precio" class="mt-1 font-medium text-slate-900"></p>
+              <span class="block text-[11px] uppercase tracking-widest text-slate-700">Precio</span>
+              <p id="delete-modal-precio" class="mt-1 font-semibold text-slate-950"></p>
             </div>
             <div>
-              <span class="block text-[11px] uppercase tracking-widest text-slate-400">Prioridad</span>
-              <p id="delete-modal-prioridad" class="mt-1 font-medium text-slate-900"></p>
+              <span class="block text-[11px] uppercase tracking-widest text-slate-700">Prioridad</span>
+              <p id="delete-modal-prioridad" class="mt-1 font-semibold text-slate-950"></p>
             </div>
           </div>
           <div>
-            <span class="block text-[11px] uppercase tracking-widest text-slate-400">Estado</span>
-            <p id="delete-modal-estado" class="mt-1 font-medium text-slate-900"></p>
+            <span class="block text-[11px] uppercase tracking-widest text-slate-700">Estado</span>
+            <p id="delete-modal-estado" class="mt-1 font-semibold text-slate-950"></p>
           </div>
           <div>
-            <span class="block text-[11px] uppercase tracking-widest text-slate-400">Descripción</span>
-            <p id="delete-modal-descripcion" class="mt-1 text-slate-600 whitespace-pre-wrap"></p>
+            <span class="block text-[11px] uppercase tracking-widest text-slate-700">Descripción</span>
+            <p id="delete-modal-descripcion" class="mt-1 text-slate-800 whitespace-pre-wrap"></p>
           </div>
         </div>
       </div>
 
       <div class="p-5 border-t border-slate-100 flex items-center justify-end gap-3">
-        <button id="delete-modal-cancel" type="button"
-          class="px-4 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+          <button id="delete-modal-cancel" type="button"
+            class="px-4 py-2 rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-100 font-medium transition">
           Cancelar
         </button>
         <form id="delete-modal-form" method="POST">
           <button type="submit"
-            class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition">
+            class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 font-semibold transition">
             Eliminar
           </button>
         </form>
@@ -288,48 +291,48 @@
   <div id="edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/50 px-4">
     <div class="w-full max-w-md rounded-2xl bg-white shadow-2xl border border-slate-100 overflow-hidden">
       <div class="p-5 border-b border-slate-100 flex items-start gap-3">
-        <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center flex-shrink-0">
           <i class="ti ti-pencil text-xl"></i>
         </div>
         <div class="min-w-0">
           <h3 class="text-base font-semibold text-slate-900">Editar deseo</h3>
-          <p class="text-sm text-slate-500 mt-1">Modifica los datos y guarda los cambios.</p>
+          <p class="text-sm text-slate-700 mt-1">Modifica los datos y guarda los cambios.</p>
         </div>
       </div>
 
       <form id="edit-modal-form" method="POST" class="p-5 space-y-4">
         <div>
-          <label for="edit-nombre" class="block text-[11px] uppercase tracking-widest text-slate-400">Nombre</label>
+          <label for="edit-nombre" class="block text-[11px] uppercase tracking-widest text-slate-700">Nombre</label>
           <input id="edit-nombre" name="nombre" type="text" required
-            class="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100">
+            class="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label for="edit-precio" class="block text-[11px] uppercase tracking-widest text-slate-400">Precio</label>
+            <label for="edit-precio" class="block text-[11px] uppercase tracking-widest text-slate-700">Precio</label>
             <input id="edit-precio" name="precio" type="number" step="0.01" required
-              class="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100">
+              class="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
           </div>
           <div>
-            <label for="edit-prioridad" class="block text-[11px] uppercase tracking-widest text-slate-400">Prioridad</label>
+            <label for="edit-prioridad" class="block text-[11px] uppercase tracking-widest text-slate-700">Prioridad</label>
             <input id="edit-prioridad" name="prioridad" type="text"
-              class="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100">
+              class="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
           </div>
         </div>
 
         <div>
-          <label for="edit-descripcion" class="block text-[11px] uppercase tracking-widest text-slate-400">Descripción</label>
+          <label for="edit-descripcion" class="block text-[11px] uppercase tracking-widest text-slate-700">Descripción</label>
           <textarea id="edit-descripcion" name="descripcion" rows="4"
-            class="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm resize-none focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100"></textarea>
+            class="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 resize-none focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"></textarea>
         </div>
 
         <div class="flex items-center justify-end gap-3 pt-1 border-t border-slate-100">
           <button id="edit-modal-cancel" type="button"
-            class="px-4 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+            class="px-4 py-2 rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-100 font-medium transition">
             Cancelar
           </button>
           <button type="submit"
-            class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
+            class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-semibold transition">
             Guardar cambios
           </button>
         </div>
@@ -354,11 +357,26 @@
     const editPrioridad = document.getElementById('edit-prioridad');
     const editDescripcion = document.getElementById('edit-descripcion');
 
+    function getPriorityClasses(priority) {
+      const normalizedPriority = (priority || 'Media').toLowerCase();
+
+      if (normalizedPriority === 'alta') {
+        return 'bg-red-50 text-red-700 ring-1 ring-red-200';
+      }
+
+      if (normalizedPriority === 'baja') {
+        return 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200';
+      }
+
+      return 'bg-amber-50 text-amber-700 ring-1 ring-amber-200';
+    }
+
     function openDeleteModal(button) {
       deleteModalForm.action = button.dataset.action;
       deleteModalNombre.textContent = button.dataset.nombre || '';
       deleteModalPrecio.textContent = `$${button.dataset.precio || '0.00'}`;
       deleteModalPrioridad.textContent = button.dataset.prioridad || 'Media';
+      deleteModalPrioridad.className = `mt-1 font-medium inline-flex items-center px-2.5 py-1 rounded-full ${getPriorityClasses(button.dataset.prioridad)}`;
       deleteModalDescripcion.textContent = button.dataset.descripcion || 'Sin descripción';
       deleteModalEstado.textContent = button.dataset.estado || 'Pendiente';
       deleteModal.classList.remove('hidden');
